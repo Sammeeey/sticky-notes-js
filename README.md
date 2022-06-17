@@ -9,15 +9,40 @@
 
     1. create dummy functions
 
-        Think of basic functionalities needed
+        Think of basic functionalities needed.
+        
+        All functions should be quite specialized and handle narrow tasks/actions.
     
     2. create variables
 
-        needed for functions
+        which are needed for functions
 
     3. code functionality to functions step by step
     
-        1. use developer tools (console and local storage) to test correct functionalty of functions upfront
+        Use developer tools (console and local storage) to test correct functionalty of functions upfront (for debugging during development)
+    
+    4. Validation functionality of functions (during development)
+
+        Use event listeners to other specialized functions inside functions. 
+        
+        When calling other functions (using event listeners) simply validate the workability of the event listeners by adding `console.log`'s with passed parameters to the called function.
+        That way you validate that the event listener `type` works as intended one once hand.
+        On the other hand you validate that the parameters from the former function are passed correctly to the specialized function.
+
+        **Simplified example for deletion of note element**:
+        ```js
+        function createNoteElement(id, content) {
+            // delete note element on double click event
+            newNote.addEventListener("dblclick", () => {
+                deleteNote(id, newNote)
+            })
+        }
+
+        function deleteNote(id, element) {
+        console.log('Deleting Note...')
+        console.log(id, element)
+        }
+        ```
 
 ## JS functions/methods
 ### JSON.parse(string)
@@ -38,3 +63,8 @@
 ```js
 `String including ${variable}`
 ```
+
+
+## Potential Improvements
+- improve UX to delete notes
+    - e.g. add "X"-button in the upper right corner of note on hover
