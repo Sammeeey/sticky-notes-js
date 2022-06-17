@@ -3,6 +3,8 @@
 
 [![app showcase screenshot](https://github.com/Sammeeey/sticky-notes-js/blob/c2d0099a9e8ae293831dbd4d28510e6db816c807/app-screenshot.PNG)](https://sammeeey.github.io/sticky-notes-js/)
 
+https://user-images.githubusercontent.com/49591562/174322872-c5624357-b603-413d-87db-4ac90d25ec40.mp4
+
 ## lessons learned
 ### order of app creation
 1. HTML file (index)
