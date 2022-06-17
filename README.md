@@ -2,7 +2,7 @@
 - based on [How to Build a Sticky Notes App](https://youtu.be/Efo7nIUF2JY) by [dcode](https://twitter.com/dcodeyt)
 
 ## lessons learned
-## order of app creation
+### order of app creation
 1. HTML file (index)
 2. CSS styling for HTML
 3. JavaScript functionality
