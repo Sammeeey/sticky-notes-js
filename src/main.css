@@ -32,8 +32,10 @@ body {
     color: rgba(0, 0, 0, .5);
     cursor: pointer;
     transition: background .2s;
+    transition: color .2s;
 }
 
-.add-notes:hover {
+.add-note:hover {
     background: rgba(0, 0, 0, .2);
+    color: rgba(153, 153, 153, 0.5);
 }
