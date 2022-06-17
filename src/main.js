@@ -38,7 +38,7 @@ function createNoteElement(id, content) {
         const doDelete = confirm("Do you really want to delete this note?");
 
         if (doDelete) {
-            deleteNote(id)
+            deleteNote(id, newNote)
         }
     })
 
@@ -74,18 +74,22 @@ function updateNote(id, newContent) {
     console.log(id, newContent)
 
     const notes = getNotes();
-    const targetNoteIndex = notes.findIndex(note => note.id == id)
-    notes[targetNoteIndex]['content'] = newContent
-
-    console.log(notes)
+    const targetNote = notes.filter(note => note.id == id)[0]
+    
+    targetNote.content = newContent
     saveNotes(notes)
 }
 
 
-function deleteNote(id, element) {
+function deleteNote(id, noteElement) {
     // delete note
     console.log('Deleting Note...')
     console.log(id)
+
+    const notes = getNotes().filter(note => note.id != id)
+
+    noteElement.remove()
+    saveNotes(notes)
 }
 
 
