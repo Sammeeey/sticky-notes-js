@@ -1,6 +1,8 @@
 # Sticky Notes App
 - based on [How to Build a Sticky Notes App](https://youtu.be/Efo7nIUF2JY) by [dcode](https://twitter.com/dcodeyt)
 
+[![app showcase screenshot](https://github.com/Sammeeey/sticky-notes-js/blob/c2d0099a9e8ae293831dbd4d28510e6db816c807/app-screenshot.PNG)](https://sammeeey.github.io/sticky-notes-js/)
+
 ## lessons learned
 ### order of app creation
 1. HTML file (index)
