@@ -3,6 +3,7 @@ const notesContainer = document.getElementById('app');
 const addNoteButton = notesContainer.querySelector('.add-note');
 
 //// event listeners
+addNoteButton.addEventListener("click", () => addNote())
 
 //// functions
 function getNotes() {
@@ -12,10 +13,12 @@ function getNotes() {
     return JSON.parse(localStorage.getItem("stickynotes-notes") || "[]");   // returns JS Array of JS Object's describing note data
 }
 
+
 function saveNotes(notes) {
     // save new notes to localStorage on clients browser
     localStorage.setItem("stickynotes-notes", JSON.stringify(notes));
 }
+
 
 function createNoteElement(id, content) {
     // build new HTML element to represent a note - define textarea, representing a single sticky note
@@ -27,43 +30,67 @@ function createNoteElement(id, content) {
     newNote.value = content
     newNote.placeholder = "Empty Sticky Note"
 
+    newNote.addEventListener("change", () => {
+        updateNote(id, newNote.value);
+    })
+
+    newNote.addEventListener("dblclick", () => {
+        const doDelete = confirm("Do you really want to delete this note?");
+
+        if (doDelete) {
+            deleteNote(id)
+        }
+    })
+
     newNote.setAttribute('id', id)
     // newNote.textContent = content
 
-    addNote(newNote)
+    // addNote(newNote)
+
+    return newNote
 }
 
-function addNote(noteElement) {
+
+function addNote() {
     // add new note to HTML as well as save it to localStorage
 
-    // append new note to #app
-    document.getElementById('app').appendChild(noteElement)
+    const notes = getNotes()
+    const noteObject = {
+        id: Math.floor(Math.random() * 100000),
+        content: ""
+    }
 
-    // get array of notes from local storage as JSON string
-    const storedNotes = getNotes()
-    console.log('storedNotes: ' + storedNotes)
-    console.log('storedNotes typeof: ' + typeof storedNotes)
+    const noteElement = createNoteElement(noteObject.id, noteObject.content)
+    notesContainer.insertBefore(noteElement, addNoteButton)
 
-    // add new note to array of notes in local storage
-    console.log(noteElement.id)
-    console.log(noteElement.value)
-
-    const newNoteObject = {
-        id: noteElement.id,
-        content: noteElement.value
-    };
-    console.log(newNoteObject)
-
-    storedNotes.push(newNoteObject)
-    
-    // save all notes to localStorage
-    saveNotes(storedNotes)
+    notes.push(noteObject)
+    saveNotes(notes)
 }
+
 
 function updateNote(id, newContent) {
     // update note
+    console.log('Updating Note...')
+    console.log(id, newContent)
+
+    const notes = getNotes();
+    const targetNoteIndex = notes.findIndex(note => note.id == id)
+    notes[targetNoteIndex]['content'] = newContent
+
+    console.log(notes)
+    saveNotes(notes)
 }
+
 
 function deleteNote(id, element) {
     // delete note
+    console.log('Deleting Note...')
+    console.log(id)
 }
+
+
+//// function calls
+getNotes().forEach(note => {
+    const noteElement = createNoteElement(note.id, note.content);
+    notesContainer.insertBefore(noteElement, addNoteButton)
+})
